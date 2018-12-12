@@ -8,9 +8,7 @@ import java.util.List;
 
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
-    /**
-     * Tag for log messages
-     */
+
     private static final String LOG_TAG = NewsLoader.class.getName();
 
     /**
@@ -47,8 +45,8 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
         }
 
         // Perform the network request, parse the response, and extract a list of newses.
-        List<News> newses = Utils.fetchNewsData(mUrl);
+        List<News> news = Utils.fetchNewsData(mUrl);
         Log.i(LOG_TAG, ": Loaded in background!");
-        return newses;
+        return news;
     }
 }

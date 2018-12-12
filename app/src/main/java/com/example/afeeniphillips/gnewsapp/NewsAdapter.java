@@ -13,23 +13,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by dobry on 04.07.17.
- */
 
 public class NewsAdapter extends ArrayAdapter<News> {
 
-    /**
-     * Tag for the log messages
-     */
+
     private static final String LOG_TAG = NewsAdapter.class.getSimpleName();
 
-    public NewsAdapter(Activity context, ArrayList<News> Newses) {
+    public NewsAdapter(Activity context, ArrayList<News> News) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
-        super(context, 0, Newses);
+        super(context, 0, News);
     }
 
 
@@ -44,7 +39,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // Get the current position of News
         final News currentNews = getItem(position);
-        Log.i(LOG_TAG, "Item position: " + position);
+        Log.i(LOG_TAG, "Item number " + position);
 
 
         // Find the TextView in the list_item.xml (mapping)

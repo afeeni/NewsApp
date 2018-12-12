@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * URL for newses data from the Guardian API
      */
     private String mUrlRequestGuardianApi = "";
-    /**
-     * TextView that is displayed when the list is empty
-     */
+
     private TextView mEmptyStateTextView;
     /**
      * Circle progress bar
@@ -206,14 +204,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoadFinished(Loader<List<News>> loader, List<News> newses) {
+    public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
 
         // Progress bar mapping
         View circleProgressBar = findViewById(R.id.loading_spinner);
         circleProgressBar.setVisibility(GONE);
 
         // Set empty state text to display "No newses found."
-        mEmptyStateTextView.setText(R.string.no_newses);
+        mEmptyStateTextView.setText(R.string.no_news);
         Log.i(LOG_TAG, ": Newses has been moved to adapter's data set. This will trigger the ListView to update!");
 
         // Clear the adapter of previous news data
@@ -221,8 +219,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // If there is a valid list of {@link News}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
-        if (newses != null && !newses.isEmpty()) {
-            mAdapter.addAll(newses);
+        if (news != null && !news.isEmpty()) {
+            mAdapter.addAll(news);
         }
 
     }

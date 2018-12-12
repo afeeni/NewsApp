@@ -26,14 +26,10 @@ import java.util.List;
  */
 
 public class Utils {
-    /**
-     * Tag for the log messages
-     */
+
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
-    /**
-     * Create a private constructor because no one should ever create a {@link Utils} object.
-     */
+
     private Utils() {
 
     }
@@ -49,7 +45,7 @@ public class Utils {
         }
 
         // Create an empty ArrayList that we can start adding newses tojs
-        List<News> newses = new ArrayList<>();
+        List<News> news = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -65,14 +61,14 @@ public class Utils {
 
             // Extract the JSONArray associated with the key called "results",
             // which represents a list of newses.
-            JSONArray newsesArray = response.getJSONArray("results");
-            Log.println(Log.INFO, LOG_TAG, String.valueOf("RESULTS ARRAY: " + newsesArray));
+            JSONArray newsArray = response.getJSONArray("results");
+            Log.println(Log.INFO, LOG_TAG, String.valueOf("RESULTS ARRAY: " + newsArray));
 
             // For each news in the newsesArray, create an {@link News} object
-            for (int i = 0; i < newsesArray.length(); i++) {
+            for (int i = 0; i < newsArray.length(); i++) {
 
                 // Get a single news at position i within the list of items (newses)
-                JSONObject currentNews = newsesArray.getJSONObject(i);
+                JSONObject currentNews = newsArray.getJSONObject(i);
                 Log.println(Log.INFO, LOG_TAG, String.valueOf(currentNews));
 
                 // For a given news, extract the JSONObject associated with the
@@ -145,7 +141,7 @@ public class Utils {
                 News newsItem = new News(titleArticle, sectionArticle, authorArticle, imageArticle, dateArticle, urlArticle);
 
                 // Add the new {@link News} to the list of newsesList.
-                newses.add(newsItem);
+                news.add(newsItem);
 
             }
 
@@ -159,7 +155,7 @@ public class Utils {
         }
 
         // Return the list of newses (newsesList)
-        return newses;
+        return news;
     }
 
     /**
@@ -196,8 +192,8 @@ public class Utils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(READ_TIMEOUT /* milliseconds */);
-            urlConnection.setConnectTimeout(CONNECT_TIMEOUT /* milliseconds */);
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -270,10 +266,10 @@ public class Utils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link News}s
-        List<News> listNewses = extractNewsFromJson(jsonResponse);
+        List<News> listNews = extractNewsFromJson(jsonResponse);
 
         // Return the list of {@link News}s
-        return listNewses;
+        return listNews;
     }
 
 }
